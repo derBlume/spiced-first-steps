@@ -1,19 +1,25 @@
 header {
-    padding: 20px;
-    border: 1px gray dashed;
-    /*height: 50px;*/
+    position: relative;
+    height: 50px;
+    margin-bottom: 10px;
 }
 
 #logo {
-    height: 50px;
-    width: 50px;
-    background: orange;
-    float: left;
+    height: 100%;
+    position: absolute;
 }
 
 #menu-button {
-    height: 50px;
-    width: 50px;
-    background: pink;
-    float: right;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+}
+
+#bigPicture {
+    background-image: url("assets/spices.jpg");
+    background-size: cover;
+    height: 400px;
+    color: white;
+    text-align: center;
+    padding: 200px;
 }
