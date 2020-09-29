@@ -1,3 +1,5 @@
+//EXERCISE 1: Check for Data Type
+
 function logType(checkThis) {
     if (typeof checkThis === "number") {
         //could be a number or NaN
@@ -44,6 +46,8 @@ logType(null); //null
 var test;
 logType(test); //undefined
 
+//EXERCISE 2: Create object with property and value reversed
+
 var a = {
     Berlin: "Germany",
     Paris: "France",
@@ -57,6 +61,12 @@ for (var i in a) {
 }
 
 console.log(b);
+
+//EXERCISE 3: Coundown
+
+for (var j = 10; j > 0; j--) {
+    console.log(j);
+}
 
 // typeof variable returns:  number string bigint boolean object function undefined symbol||{]\}
 
