@@ -44,6 +44,20 @@ logType(null); //null
 var test;
 logType(test); //undefined
 
+var a = {
+    Berlin: "Germany",
+    Paris: "France",
+    "New York": "USA",
+};
+
+var b = {};
+
+for (var i in a) {
+    b[a[i]] = i;
+}
+
+console.log(b);
+
 // typeof variable returns:  number string bigint boolean object function undefined symbol||{]\}
 
 /*
