@@ -18,8 +18,31 @@ header {
 #bigPicture {
     background-image: url("assets/spices.jpg");
     background-size: cover;
-    height: 400px;
+    height: 300px;
     color: white;
+
+    position: relative;
+}
+
+#headline {
     text-align: center;
-    padding: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 30px;
+    background-color: yellow;
+    border-color: tomato;
+    color: tomato;
+    display: inline;
+    padding: 10px;
+}
+
+#content {
 }
