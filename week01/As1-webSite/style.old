@@ -1,3 +1,4 @@
+/*works with a linkebreak*/
 * {
     margin: 0;
 }
@@ -53,49 +54,32 @@ h2 {
 }
 
 article {
-    width: 49%;
+    width: 310px;
     display: inline-block;
-    padding-bottom: 10px;
+    padding: 5px;
     position: relative;
-    /*  border: dotted;
-    border-width: 1px;
-    border-color: black; */
 }
 
 .icon {
     width: 50px;
-    padding-right: 5px;
+    padding-right: 10px;
+    position: relative;
+    top: 0 px;
+    right: 0 px;
     display: inline-block;
-    vertical-align: top;
 }
 
 .description {
-    width: 75%;
+    position: relative;
+    left: 60px;
+    bottom: 60px;
+    width: 250px;
     display: inline-block;
-    vertical-align: top;
 }
 
 main {
-    width: 80%;
     position: relative;
     left: 50%;
     transform: translate(-50%);
     display: inline-block;
-}
-
-@media screen and (max-width: 768px) {
-    article {
-        display: block;
-        width: 100%;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    header {
-        background-color: darkslategrey;
-    }
-    body {
-        background-color: black;
-        color: whitesmoke;
-    }
 }
