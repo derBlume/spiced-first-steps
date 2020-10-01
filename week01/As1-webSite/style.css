@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -12,6 +13,12 @@ header {
     background-color: white;
 }
 
+footer {
+    font-size: x-small;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 10px;
+}
 .logo {
     height: 50px;
     position: absolute;
@@ -27,7 +34,7 @@ header {
     background-image: url("assets/spices.jpg");
     background-size: cover;
     height: 300px;
-    color: white;
+    color: rgb(212, 236, 225);
     margin-bottom: 20px;
     position: relative;
 }
@@ -40,16 +47,25 @@ header {
     transform: translate(-50%, -50%);
 }
 
+h1 {
+    font-size: xx-large;
+}
+
 h2 {
     border-width: 3px;
     border-style: solid;
     border-radius: 30px;
-    background-color: yellow;
+    background-color: #ffff00;
     border-color: tomato;
     color: tomato;
     display: inline-block;
     padding: 10px;
     margin-top: 10px;
+    transition: 500ms;
+}
+
+h2:hover {
+    background-color: #09ff00;
 }
 
 article {
@@ -64,9 +80,17 @@ article {
 
 .icon {
     width: 50px;
-    padding-right: 5px;
+    margin-right: 5px;
     display: inline-block;
     vertical-align: top;
+    border: solid;
+    border-width: 2px;
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+.icon:hover {
+    border-color: black;
 }
 
 .description {
@@ -97,5 +121,10 @@ main {
     body {
         background-color: black;
         color: whitesmoke;
+    }
+    h2 {
+        background-color: #d6d600;
+        border-color: rgb(207, 79, 56);
+        color: rgb(207, 79, 56);
     }
 }
