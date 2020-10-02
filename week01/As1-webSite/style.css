@@ -13,21 +13,30 @@ header {
     background-color: white;
 }
 
-footer {
-    font-size: x-small;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 10px;
-}
 .logo {
     height: 50px;
-    position: absolute;
 }
 
 .menu-button {
     height: 50px;
     position: absolute;
-    right: 0px;
+    top: 10px;
+    right: 10px;
+}
+
+main {
+    width: 80%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    display: inline-block;
+}
+
+footer {
+    font-size: x-small;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 10px;
 }
 
 .bigPicture {
@@ -87,6 +96,7 @@ article {
     border-width: 2px;
     border-color: transparent;
     border-radius: 50%;
+    transition: 500ms;
 }
 
 .icon:hover {
@@ -97,14 +107,6 @@ article {
     width: 75%;
     display: inline-block;
     vertical-align: top;
-}
-
-main {
-    width: 80%;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-    display: inline-block;
 }
 
 @media screen and (max-width: 768px) {
