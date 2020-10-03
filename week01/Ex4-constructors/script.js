@@ -55,16 +55,16 @@ Write a constructor called Countdown that accepts a single argument - the number
 function Countdown(time) {
     this.time = time;
     this.start = function () {
-        var cd = this.time;
-        function simpleCountdown(time) {
-            if (time >= 0) {
+        var startTime = this.time;
+        function simpleCountdown(timeLeft) {
+            if (timeLeft >= 0) {
                 setTimeout(function () {
-                    console.log(time);
-                    simpleCountdown(time - 1);
+                    console.log(timeLeft);
+                    simpleCountdown(timeLeft - 1);
                 }, 1000);
             }
         }
-        simpleCountdown(cd);
+        simpleCountdown(startTime);
     };
 }
 
@@ -72,13 +72,13 @@ var countdownFrom5 = new Countdown(5);
 
 countdownFrom5.start();
 
-function simpleCountdown(time) {
+/* function simpleCountdown(time) {
     if (time >= 0) {
         setTimeout(function () {
             console.log(time);
             simpleCountdown(time - 1);
         }, 1000);
     }
-}
+} */
 
 //simpleCountdown(5);
