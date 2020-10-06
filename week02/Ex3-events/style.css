@@ -1,0 +1,105 @@
+.safetynet {
+    background-color: yellowgreen;
+    display: inline-block;
+    border: 5px solid black;
+}
+
+#playground {
+    position: relative;
+    height: 300px;
+    width: 400px;
+    background-color: lightseagreen;
+    margin: 50px;
+}
+
+#visibleStart {
+    position: relative;
+    top: 65px;
+    left: 65px;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background-color: skyblue;
+    border-radius: 50%;
+    border: 5px solid green;
+    text-align: center;
+}
+
+#start {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+#dontTouch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 150px;
+
+    border-radius: 50%;
+}
+
+#visibleDontTouch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+    font-size: small;
+    text-align: center;
+}
+
+#follower {
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    background-color: burlywood;
+    border: 5px solid black;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#textarea {
+    width: 90%;
+    height: 200px;
+    font-size: 20px;
+}
+
+#colorfulDiv {
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+}
+
+#outer {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    position: relative;
+    background-color: white;
+}
+
+#inner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid black;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+}
