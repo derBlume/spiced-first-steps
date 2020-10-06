@@ -1,3 +1,7 @@
+body {
+    margin: 10px;
+}
+
 .safetynet {
     background-color: yellowgreen;
     display: inline-block;
@@ -14,9 +18,6 @@
 
 #visibleStart {
     position: relative;
-    top: 65px;
-    left: 65px;
-    transform: translate(-50%, -50%);
     width: 120px;
     height: 120px;
     background-color: skyblue;
@@ -32,7 +33,7 @@
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: green;
+    /* background-color: green; */
     border-radius: 50%;
 }
 
@@ -62,8 +63,8 @@
 
 #follower {
     position: absolute;
-    left: 50px;
-    top: 50px;
+    left: 400px;
+    top: 115px;
     transform: translate(-50%, -50%);
     width: 90px;
     height: 90px;
@@ -72,6 +73,13 @@
     border-radius: 50%;
     pointer-events: none;
 }
+
+#timer {
+    position: absolute;
+    left: 65px;
+}
+
+/* xxxxxxxxxxxxxxxxxxxxxxxx */
 
 #textarea {
     width: 90%;
