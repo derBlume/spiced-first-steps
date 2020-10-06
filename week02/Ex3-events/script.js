@@ -43,8 +43,12 @@ start.addEventListener("mouseenter", function () {
 });
 start.addEventListener("mouseleave", function () {
     follower.style.backgroundColor = "burlywood";
-    timerRunning = true;
     logTime(0);
+});
+start.addEventListener("click", function () {
+    timerRunning = true;
+    follower.style.backgroundColor = "yellow";
+    timer.innerHTML = "Run a circle!";
 });
 
 /* EXERCISE 2:
