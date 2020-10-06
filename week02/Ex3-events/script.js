@@ -27,11 +27,13 @@ playground.addEventListener("mouseleave", function () {
 });
 
 dontTouch.addEventListener("mouseenter", function () {
-    follower.style.backgroundColor = "red";
-    timerRunning = false;
-    setTimeout(function () {
-        timer.innerHTML = "GAME OVER";
-    }, 12);
+    if (timerRunning) {
+        follower.style.backgroundColor = "red";
+        timerRunning = false;
+        setTimeout(function () {
+            timer.innerHTML = "GAME OVER";
+        }, 12);
+    }
 });
 dontTouch.addEventListener("mouseleave", function () {
     follower.style.backgroundColor = "burlywood";
@@ -48,7 +50,11 @@ start.addEventListener("mouseleave", function () {
 start.addEventListener("click", function () {
     timerRunning = true;
     follower.style.backgroundColor = "yellow";
-    timer.innerHTML = "Run a circle!";
+    if (Math.random() >= 0.5) {
+        timer.innerHTML = "Run a circle CLOCKWISE!";
+    } else {
+        timer.innerHTML = "Run a circle ANTI-CLOCKWISE!";
+    }
 });
 
 /* EXERCISE 2:
