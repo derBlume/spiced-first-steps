@@ -1,0 +1,25 @@
+body {
+    background-color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    height: 100vh;
+}
+
+header {
+    height: 70px;
+    width: 100%;
+    background-color: thistle;
+}
+
+footer {
+    height: 30px;
+    width: 100%;
+    background-color: yellowgreen;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+}

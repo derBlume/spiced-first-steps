@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    background-color: salmon;
+}
+
+.outer {
+    width: 200px;
+    height: 200px;
+    background-color: aquamarine;
+    margin: 10px;
+    display: flex;
+}
+
+.inner {
+    width: 100px;
+    height: 100px;
+    background-color: tomato;
+}
+
+.outer.one {
+    justify-content: flex-end;
+    background-color: grey;
+}
+
+.outer.two {
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: black;
+}
+
+.outer.three {
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: blue;
+}
+
+.outer.four {
+    background-color: purple;
+}
+
+.inner.one {
+    background-color: orange;
+}
+
+.inner.two {
+    background-color: yellow;
+}
+
+.inner.three {
+    background-color: green;
+}
+
+.inner.four {
+    background-color: lightgrey;
+}
