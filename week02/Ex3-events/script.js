@@ -103,5 +103,4 @@ inner.addEventListener("click", function (event) {
 
 outer.addEventListener("click", function (event) {
     outer.style.backgroundColor = generateRandomColor();
-    event.stopPropagation();
 });

@@ -17,11 +17,52 @@ header {
     height: 50px;
 }
 
-.menu-button {
+.openMenu {
     height: 50px;
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+.closeMenu {
+    font-size: large;
+    font-weight: bold;
+    text-align: right;
+}
+
+.menuBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: white;
+    height: 100%;
+    width: 50%;
+    padding: 10px;
+    max-width: 300px;
+    transform: translateX(100%);
+    visibility: hidden;
+}
+
+.menu.on {
+    transform: translateX(0);
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+.on {
+    visibility: visible;
 }
 
 main {
