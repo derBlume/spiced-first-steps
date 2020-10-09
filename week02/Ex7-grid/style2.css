@@ -1,0 +1,47 @@
+body {
+    display: flex;
+}
+
+.outer {
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template: 50% 50% / 50% 50%;
+    margin: 2px;
+}
+
+.inner.one {
+    grid-area: 1 / 2;
+    background-color: orange;
+}
+
+.inner.two {
+    grid-area: 2 / 2;
+    background-color: yellow;
+}
+
+.inner.three {
+    grid-area: 2 / 1;
+    background-color: green;
+}
+
+.inner.four {
+    grid-area: 1 / 1;
+    background-color: pink;
+}
+
+.outer.one {
+    background-color: gray;
+}
+
+.outer.two {
+    background-color: black;
+}
+
+.outer.three {
+    background-color: blue;
+}
+
+.outer.four {
+    background-color: purple;
+}

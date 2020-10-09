@@ -1,0 +1,12 @@
+body {
+    background-color: tomato;
+    display: grid;
+    grid-template-rows: 70px 1fr 30px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header,
+footer {
+    background-color: teal;
+}
