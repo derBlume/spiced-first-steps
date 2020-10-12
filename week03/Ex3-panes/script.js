@@ -2,7 +2,6 @@ var panes = document.querySelector(".panes");
 var image = document.querySelector("img:nth-child(2)");
 var bar = document.querySelector(".bar");
 
-var inPane;
 var mouseDown;
 
 panes.addEventListener("mousedown", function () {
@@ -24,5 +23,3 @@ panes.addEventListener("mousemove", function (event) {
         image.style.clipPath = "inset(0 0 0 " + position + "px)";
     }
 });
-
-console.log(panes.offsetWidth);
