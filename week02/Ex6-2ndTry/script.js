@@ -9,7 +9,7 @@
 
     for (var dot of dots) {
         dot.addEventListener("click", function (event) {
-            if (transitionRunning === true) {
+            if (transitionRunning) {
                 return;
             }
 
@@ -38,6 +38,29 @@
             "transitionend",
             function () {
                 transitionRunning = false;
+
+                var touch;
+                images[nextImage].addEventListener("touchstart", function (e) {
+                    console.log(e);
+                    touch = {
+                        x: e.changedTouches[0].screenX,
+                        y: e.changedTouches[0].screenY,
+                    };
+                });
+
+                images[nextImage].addEventListener("touchend", function (e) {
+                    if (transitionRunning) {
+                        return;
+                    }
+                    var diffX = touch.x - e.changedTouches[0].screenX;
+                    var diffY = touch.y - e.changedTouches[0].screenY;
+                    if (Math.abs(diffY) > Math.abs(diffX)) {
+                        return;
+                    }
+                    if (diffX > 10) {
+                        animate();
+                    }
+                });
 
                 images[currentImage].classList.remove("offscreen");
 

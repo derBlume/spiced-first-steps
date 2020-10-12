@@ -48,3 +48,9 @@ body {
 .dot.filled {
     background-color: white;
 }
+
+@media screen and (max-height: 600px) {
+    .imageContainer {
+        height: 100vh;
+    }
+}

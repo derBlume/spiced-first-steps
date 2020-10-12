@@ -12,10 +12,6 @@ panes.addEventListener("mouseup", function () {
     mouseDown = false;
 });
 
-function inPane() {
-    event.PageX - panes.offsetLeft <= panes.style.offsetWidth;
-}
-
 panes.addEventListener("mousemove", function (event) {
     var position = event.pageX - panes.offsetLeft;
     if (mouseDown && position <= panes.offsetWidth - 5 && position >= 5) {
