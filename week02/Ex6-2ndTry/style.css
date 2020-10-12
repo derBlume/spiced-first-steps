@@ -5,18 +5,28 @@ body {
 
 .imageContainer {
     height: 600px;
-    display: flex;
+    position: relative;
     overflow: hidden;
 }
 
-.sliderimage {
+.image {
+    position: absolute;
     width: 100%;
+    height: 100%;
     object-fit: cover;
+    transform: translateX(100%);
 }
 
-.sliderimage.move {
-    transform: translate(-100%);
-    transition: transform 300ms;
+.onscreen {
+    transform: none;
+}
+.offscreen {
+    transform: translateX(-100%);
+}
+
+.onscreen,
+.offscreen {
+    transition: transform 500ms;
 }
 
 .dotContainer {
