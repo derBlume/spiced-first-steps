@@ -1,0 +1,30 @@
+body {
+    background-color: rosybrown;
+}
+
+.ticker {
+    position: relative;
+    overflow: hidden;
+    height: 50px;
+    font-size: 25px;
+    font-family: monospace;
+    border-top: 3px solid tomato;
+    border-bottom: 3px solid tomato;
+}
+
+.headlines {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+    white-space: nowrap;
+}
+
+a:hover {
+    color: teal;
+}
+
+a::after {
+    content: " +++ ";
+    color: black;
+}

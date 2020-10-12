@@ -1,0 +1,33 @@
+body {
+    background-color: teal;
+}
+
+.panes {
+    height: 400px;
+    width: 600px;
+    position: relative;
+    margin: 50px;
+}
+
+img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+img:nth-child(2) {
+    clip-path: inset(0 0 0 20%);
+}
+
+.bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background-color: rgba(185, 15, 15, 0.8);
+    left: 20%;
+    transform: translateX(-50%);
+}
