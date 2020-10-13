@@ -1,24 +1,3 @@
-// 1. input
-// - need to get a list of the matching countries
-// - IF no matching countries, show "no results" message
-
-// 2. mouseover
-// - highlight the currently active country (adding a class)
-// - store the active country in a variable
-
-// 3. click
-// - use clicked on country as new value for input
-
-// 4. keydown
-// - IF key = ENTER, use active country as new value for inpuit
-// - IF key = ARROW_DOWN / ARROW_UP, change the active country
-
-// 5. blur
-// - hide the result set
-
-// 6. focus
-// - show the result set
-
 (function (countries) {
     var MAX_NUMBER_OF_RESULTS = 4;
 
@@ -52,8 +31,6 @@
         }
     });
 
-    // event delegation
-    // https://learn.jquery.com/events/event-delegation/
     $(resultsContainer).on("click", "p", function (e) {
         inputField.val($(e.target).text());
         resultsContainer.empty();
@@ -64,10 +41,6 @@
         $(e.target).addClass("highlighted");
         highlighted = $(e.target).text();
     });
-
-    /* $(resultsContainer).on("mouseout", "p", function (e) {
-        $(e.target).removeClass("highlighted");
-    }); */
 
     $(inputField).on("blur", function () {
         resultsContainer.hide();
