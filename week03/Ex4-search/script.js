@@ -30,24 +30,25 @@
             resultsContainer.append("<p>" + result + "</p>");
         }
     });
-
-    $(resultsContainer).on("click", "p", function (e) {
-        inputField.val($(e.target).text());
+    // mousedown fires before blur, click fires after
+    $(resultsContainer).on("mousedown", "p", function (event) {
+        inputField.val($(event.target).text());
         resultsContainer.empty();
     });
 
-    $(resultsContainer).on("mouseover", "p", function (e) {
+    $(resultsContainer).on("mouseover", "p", function (event) {
         $(resultsContainer).children().removeClass("highlighted");
-        $(e.target).addClass("highlighted");
-        highlighted = $(e.target).text();
+        $(event.target).addClass("highlighted");
+        highlighted = $(event.target).text();
     });
 
     $(inputField).on("blur", function () {
-        resultsContainer.hide();
+        resultsContainer.slideUp(200);
+        //resultsContainer.hide();
     });
 
     $(inputField).on("focus", function () {
-        resultsContainer.show();
+        resultsContainer.slideDown(200);
     });
 
     $(inputField).on("keydown", function (event) {

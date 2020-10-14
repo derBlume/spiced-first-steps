@@ -22,12 +22,22 @@ body {
 .searchfield {
     width: 100%;
     font-size: large;
-
+    border-radius: 5px;
     border: 0;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .results {
     background-color: white;
+    border-radius: 0 0 5px 5px;
+    margin: 0 5px;
+    overflow: hidden;
+}
+
+.results p {
+    display: block;
+    padding: 5px;
 }
 
 .highlighted {

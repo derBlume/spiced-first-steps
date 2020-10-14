@@ -1,0 +1,18 @@
+body {
+    background-color: burlywood;
+}
+
+textarea {
+    height: 400px;
+    width: 400px;
+}
+
+.checkJSON {
+    display: inline-block;
+    width: 100px;
+}
+
+.translateNumber {
+    display: inline-block;
+    width: 400px;
+}
