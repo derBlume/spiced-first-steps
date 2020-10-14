@@ -41,7 +41,6 @@ buttonCheckJSON.addEventListener("click", function () {
 //translate Number to German
 
 function askForNumber() {
-    //var num = prompt("Please enter a number between 1 and 10");
     var num = number.value;
     if (num >= 1 && num <= 10 && num == parseInt(num)) {
         return num;
@@ -71,8 +70,43 @@ buttonTranslateNumber.addEventListener("click", function () {
         buttonTranslateNumber.value = translateNumberToGerman(askForNumber());
     } catch (error) {
         buttonTranslateNumber.value = error;
-        //translateNumberToGerman(askForNumber());
     }
 });
 
 console.log(number);
+
+//translate number to german (the annoying version with promts that try until user complies)
+
+/* function askForNumber() {
+    var num = prompt("Please enter a number between 1 and 10");
+    if (num >= 1 && num <= 10 && num == parseInt(num)) {
+        return num;
+    }
+    throw new Error("VERBOTEN! Enter a number between 1 and 10");
+}
+
+function translateNumberToGerman() {
+    var germanNumbers = [
+        "Null",
+        "Eins",
+        "Zwei",
+        "Drei",
+        "Vier",
+        "Fünf",
+        "Sechs",
+        "Sieben",
+        "Acht",
+        "Neun",
+        "Zehn",
+    ];
+
+    try {
+        alert("auf Deutsch: " + germanNumbers[askForNumber()]);
+    } catch (e) {
+        alert(e);
+        translateNumberToGerman();
+    }
+}
+
+translateNumberToGerman();
+ */
