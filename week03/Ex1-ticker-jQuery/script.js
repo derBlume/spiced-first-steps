@@ -5,7 +5,7 @@
     var tickerMoves;
 
     function moveTicker() {
-        var firstHeadline = $(".headlines > a");
+        var firstHeadline = $(".headlines > a:first-child");
         if (positionLeft + firstHeadline.offsetWidth <= 0) {
             headlines.append(firstHeadline);
             positionLeft = 0;

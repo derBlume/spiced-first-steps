@@ -4,27 +4,35 @@
     var inputField = $("input[name=country]");
     var resultsContainer = $(".results");
     var highlighted;
+    var timeout;
 
     inputField.on("input", function () {
         var input = inputField.val();
+        clearTimeout(timeout);
 
-        resultsContainer.empty();
-
-        if (input != "") {
-            $.ajax("https://spicedworld.herokuapp.com/", {
-                data: { q: input },
-            })
-                .done(function (results) {
-                    if (inputField.val() === input) {
-                        console.log(results);
-                        for (var result of results) {
-                            resultsContainer.append("<p>" + result + "</p>");
-                        }
-                    }
+        if (input !== "") {
+            function fetchData() {
+                $.ajax("https://spicedworld.herokuapp.com/", {
+                    data: { q: input },
                 })
-                .fail(function (e) {
-                    console.log(e);
-                });
+                    .done(function (results) {
+                        if (inputField.val() === input) {
+                            resultsContainer.empty();
+                            console.log(results);
+                            for (var result of results) {
+                                resultsContainer.append(
+                                    "<p>" + result + "</p>"
+                                );
+                            }
+                        }
+                    })
+                    .fail(function (e) {
+                        console.log(e);
+                    });
+            }
+            timeout = setTimeout(fetchData, 250);
+        } else {
+            resultsContainer.empty();
         }
     });
     // mousedown fires before blur, click fires after
@@ -40,12 +48,13 @@
     });
 
     $(inputField).on("blur", function () {
-        resultsContainer.slideUp(200);
-        //resultsContainer.hide();
+        //resultsContainer.slideUp(200);
+        resultsContainer.hide();
     });
 
     $(inputField).on("focus", function () {
-        resultsContainer.slideDown(200);
+        //resultsContainer.slideDown(200);
+        resultsContainer.show();
     });
 
     $(inputField).on("keydown", function (event) {
