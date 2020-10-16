@@ -1,0 +1,26 @@
+body {
+    background-color: cadetblue;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px;
+    gap: 5px;
+}
+
+.token {
+    border: 2px solid black;
+    border-radius: 50%;
+    grid-row: 1;
+    grid-column: 1;
+    text-align: center;
+}
+
+.playerX {
+    background-color: chartreuse;
+}
+
+.playerO {
+    background-color: crimson;
+}
