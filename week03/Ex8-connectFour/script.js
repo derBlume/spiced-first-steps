@@ -1,6 +1,10 @@
 var board = $(".board");
 var messageArea = $(".messageArea");
+var token = $(".token");
+var body = $("body");
 messageArea.text("Let's play!");
+
+var transitionRunning = false;
 
 var player = "player-1";
 
@@ -9,7 +13,9 @@ var victory = false;
 var numMoves = 0;
 
 function switchPlayer() {
+    token.removeClass(player);
     player = player === "player-1" ? "player-2" : "player-1";
+    token.addClass(player);
 }
 
 function getColumnIdx(slotIdx) {
@@ -56,6 +62,8 @@ function resetBoard() {
 }
 
 $(".slot").on("click", function (e) {
+    if (transitionRunning) return;
+
     if (victory || numMoves >= 42) {
         resetBoard();
         return;
@@ -83,7 +91,25 @@ $(".slot").on("click", function (e) {
             !columnSlots.eq(rowIdx).hasClass("player-1") &&
             !columnSlots.eq(rowIdx).hasClass("player-2")
         ) {
-            columnSlots.eq(rowIdx).addClass(player);
+            var targetPosition = columnSlots.eq(rowIdx).offset();
+
+            transitionRunning = true;
+            token.addClass("new-position");
+            token.css("left", `${targetPosition.left + 5}px`);
+            token.css("top", `${targetPosition.top - 50}px`);
+            //columnSlots.eq(rowIdx).addClass(player);
+
+            //This event listener fires several times - why?
+            token.one("transitionend", function () {
+                transitionRunning = false;
+                columnSlots.eq(rowIdx).addClass(player);
+                console.log("falling");
+                token.removeClass("new-position");
+                token.css("top", `0px`);
+                switchPlayer();
+                //token.off(":falling");
+            });
+
             freeSlotFound = true;
 
             rowSlots = $(`.row-${rowIdx}`);
@@ -114,15 +140,18 @@ $(".slot").on("click", function (e) {
             checkVictory(diagSlots2);
 
         if (victory) {
-            console.log("VICTORY FOR", player);
             var playerPretty = player === "player-1" ? "Player 1" : "Player 2";
             messageArea.text(`${playerPretty} wins! Click to play again.`);
         } else if (numMoves >= 42) {
-            console.log("It's a tie");
             messageArea.text("It's a tie! Click to start over.");
+            //switchPlayer();
+        } /* else {
             switchPlayer();
-        } else {
-            switchPlayer();
-        }
+        } */
     }
+});
+
+body.on("mousemove.selectTarget", function (e) {
+    if (transitionRunning) return;
+    token.css("left", `${e.pageX - 20}px`);
 });
