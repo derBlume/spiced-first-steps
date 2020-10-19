@@ -13,9 +13,9 @@ var victory = false;
 var numMoves = 0;
 
 function switchPlayer() {
-    token.removeClass(player);
+    token.removeClass(player + "v");
     player = player === "player-1" ? "player-2" : "player-1";
-    token.addClass(player);
+    token.addClass(player + "v");
 }
 
 function getColumnIdx(slotIdx) {
@@ -56,6 +56,8 @@ function resetBoard() {
     console.log("reset click");
     $(".slot").removeClass("player-1");
     $(".slot").removeClass("player-2");
+    $(".slot").removeClass("player-1" + "v");
+    $(".slot").removeClass("player-2" + "v");
     victory = false;
     numMoves = 0;
     messageArea.text("Let's play!");
@@ -97,17 +99,16 @@ $(".slot").on("click", function (e) {
             token.addClass("new-position");
             token.css("left", `${targetPosition.left + 5}px`);
             token.css("top", `${targetPosition.top - 50}px`);
-            //columnSlots.eq(rowIdx).addClass(player);
+            columnSlots.eq(rowIdx).addClass(player);
 
-            //This event listener fires several times - why?
+            //the "on" event listener fires several times - why?
             token.one("transitionend", function () {
                 transitionRunning = false;
-                columnSlots.eq(rowIdx).addClass(player);
-                console.log("falling");
+                columnSlots.eq(rowIdx).addClass(player + "v");
+
                 token.removeClass("new-position");
                 token.css("top", `0px`);
                 switchPlayer();
-                //token.off(":falling");
             });
 
             freeSlotFound = true;
@@ -144,10 +145,7 @@ $(".slot").on("click", function (e) {
             messageArea.text(`${playerPretty} wins! Click to play again.`);
         } else if (numMoves >= 42) {
             messageArea.text("It's a tie! Click to start over.");
-            //switchPlayer();
-        } /* else {
-            switchPlayer();
-        } */
+        }
     }
 });
 
