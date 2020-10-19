@@ -1,21 +1,26 @@
-var board = $(".board");
 var messageArea = $(".messageArea");
 var token = $(".token");
-var body = $("body");
-messageArea.text("Let's play!");
 
+//State of Game
 var transitionRunning = false;
-
 var player = "player-1";
-
 var victory = false;
-
 var numMoves = 0;
 
+function buildBoard() {
+    for (var i = 0; i < 42; i++) {
+        var column = getColumnIdx(i);
+        var row = getRowIdx(i);
+
+        $(".board").append(`
+    <div class="slot column-${column} row-${row}">
+      <div class="hole"></div>
+    </div>`);
+    }
+}
+
 function switchPlayer() {
-    token.removeClass(player + "v");
     player = player === "player-1" ? "player-2" : "player-1";
-    token.addClass(player + "v");
 }
 
 function getColumnIdx(slotIdx) {
@@ -24,16 +29,6 @@ function getColumnIdx(slotIdx) {
 
 function getRowIdx(slotIdx) {
     return Math.floor(slotIdx / 7);
-}
-
-for (var i = 0; i < 42; i++) {
-    var column = getColumnIdx(i);
-    var row = getRowIdx(i);
-
-    board.append(`
-    <div class="slot column-${column} row-${row}">
-      <div class="hole"></div>
-    </div>`);
 }
 
 function checkVictory(slots) {
@@ -63,17 +58,10 @@ function resetBoard() {
     messageArea.text("Let's play!");
 }
 
-$(".slot").on("click", function (e) {
-    if (transitionRunning) return;
-
-    if (victory || numMoves >= 42) {
-        resetBoard();
-        return;
-    }
-
+function makeMove(event) {
     numMoves++;
 
-    var slot = $(e.currentTarget);
+    var slot = $(event.currentTarget);
 
     var slotIdx = slot.index();
 
@@ -84,7 +72,6 @@ $(".slot").on("click", function (e) {
     var freeSlotFound = false;
 
     var rowSlots;
-
     var diagSlots1 = [];
     var diagSlots2 = [];
 
@@ -93,13 +80,13 @@ $(".slot").on("click", function (e) {
             !columnSlots.eq(rowIdx).hasClass("player-1") &&
             !columnSlots.eq(rowIdx).hasClass("player-2")
         ) {
-            var targetPosition = columnSlots.eq(rowIdx).offset();
+            columnSlots.eq(rowIdx).addClass(player);
 
+            var targetPosition = columnSlots.eq(rowIdx).offset();
             transitionRunning = true;
             token.addClass("new-position");
             token.css("left", `${targetPosition.left + 5}px`);
             token.css("top", `${targetPosition.top - 50}px`);
-            columnSlots.eq(rowIdx).addClass(player);
 
             //the "on" event listener fires several times - why?
             token.one("transitionend", function () {
@@ -108,7 +95,9 @@ $(".slot").on("click", function (e) {
 
                 token.removeClass("new-position");
                 token.css("top", `0px`);
+                token.removeClass(player + "v");
                 switchPlayer();
+                token.addClass(player + "v");
             });
 
             freeSlotFound = true;
@@ -147,9 +136,22 @@ $(".slot").on("click", function (e) {
             messageArea.text("It's a tie! Click to start over.");
         }
     }
+}
+
+buildBoard();
+
+$(".slot").on("click", function (event) {
+    if (transitionRunning) return;
+
+    if (victory || numMoves >= 42) {
+        resetBoard();
+        return;
+    }
+
+    makeMove(event);
 });
 
-body.on("mousemove.selectTarget", function (e) {
+$("body").on("mousemove.selectTarget", function (e) {
     if (transitionRunning) return;
     token.css("left", `${e.pageX - 20}px`);
 });

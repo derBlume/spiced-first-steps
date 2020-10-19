@@ -23,10 +23,7 @@ body {
 }
 
 .new-position {
-    transition-property: top;
-    transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    transition-duration: 1s;
-    /* transform: translate(0, -120%); */
+    transition: left 1s, top 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .game-container {
@@ -60,11 +57,11 @@ body {
     grid-template-rows: repeat(6, 50px);
 }
 
-.player-1 {
+/* .player-1 {
 }
 
 .player-2 {
-}
+} */
 
 .player-1v {
     background-color: rgb(206, 54, 54);
