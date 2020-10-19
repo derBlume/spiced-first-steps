@@ -12,60 +12,57 @@ function queryApi() {
             offset: offset,
         },
         success: function (data) {
-            console.log(data);
-
-            var next =
-                data[$("select[name=type]").val() + "s"].total > offset + 15;
-            var items = data[$("select[name=type]").val() + "s"].items;
-
-            if (items.length === 0) {
-                $("#searchInfo").empty();
-                $("#searchInfo").show();
-                $("#searchInfo").append(
-                    `<p>Sorry, nothing found for "${$(
-                        "input[name=query]"
-                    ).val()}"</p>`
-                );
-                return;
-            }
-
-            $("#searchInfo").empty();
-            $("#searchInfo").show();
-            $("#searchInfo").append(
-                `<p>Results for "${$("input[name=query]").val()}":</p>`
-            );
-
-            for (var item of items) {
-                var image;
-
-                results.append(`<div class="description"><p>${idx}.</p></div>`);
-                idx++;
-
-                if (item.images.length) {
-                    image = item.images[0].url;
-                    results.append(`<img class="image" src="${image}" />`);
-                } else {
-                    results.append(
-                        `<div class="image">Sorry, no image available</div>`
-                    );
-                }
-                results.append(
-                    `<div class="description"><p><a href="${item.external_urls.spotify}">${item.name}</a></p></div>`
-                );
-            }
-
-            if (next) {
-                $("#more").show();
-            } else {
-                $("#more").hide();
-            }
+            displayResults(data);
         },
         error: function () {
-            $("#searchInfo").empty();
-            $("#searchInfo").show();
-            $("#searchInfo").append(`<p>Something went wrong. Sorry!</p>`);
+            displaySearchInfo(`<p>${message}</p>`);
         },
     });
+}
+
+function displaySearchInfo(message) {
+    $("#searchInfo").empty();
+    $("#searchInfo").show();
+    $("#searchInfo").append(`<p>${message}</p>`);
+}
+
+function displayResults(data) {
+    var next = data[$("select[name=type]").val() + "s"].total > offset + 15;
+    var items = data[$("select[name=type]").val() + "s"].items;
+
+    if (items.length === 0) {
+        displaySearchInfo(
+            `<p>Sorry, nothing found for "${$("input[name=query]").val()}"</p>`
+        );
+        $("#more").hide();
+        return;
+    }
+    displaySearchInfo(`Results for "${$("input[name=query]").val()}":`);
+
+    for (var item of items) {
+        var image;
+
+        results.append(`<div class="description"><p>${idx}.</p></div>`);
+        idx++;
+
+        if (item.images.length) {
+            image = item.images[0].url;
+            results.append(`<img class="image" src="${image}" />`);
+        } else {
+            results.append(
+                `<div class="image">Sorry, no image available</div>`
+            );
+        }
+        results.append(
+            `<div class="description"><p><a href="${item.external_urls.spotify}">${item.name}</a></p></div>`
+        );
+    }
+
+    if (next) {
+        $("#more").show();
+    } else {
+        $("#more").hide();
+    }
 }
 
 $("#search").on("click", function () {
