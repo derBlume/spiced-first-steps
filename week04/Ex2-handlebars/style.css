@@ -1,0 +1,13 @@
+body {
+    background-color: green;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 200px 400px;
+    gap: 10px;
+}
+
+img {
+    width: 100%;
+}

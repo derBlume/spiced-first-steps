@@ -52,18 +52,23 @@ body {
 #results {
     /* width: 450px; */
     display: grid;
-    grid-template-columns: 50px 120px 320px;
+    grid-template-columns: 50px 100px 320px;
+    gap: 10px;
+    padding: 10px;
 }
 
 #results .image {
     width: 100%;
-    padding: 10px;
+    height: 100px;
+    object-fit: cover;
+    /* padding: 10px; */
     text-align: center;
 }
 
 #results .description {
     height: 100px;
-    padding: 10px;
+    /*     padding: 10px;
+ */
     text-align: center;
 }
 

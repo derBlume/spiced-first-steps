@@ -2,6 +2,13 @@ var results = $("#results");
 
 var offset = 0;
 var idx = 1;
+var currentQuery;
+
+var params = new URLSearchParams(document.location.search);
+
+var infinite_mode = params.get("scroll") === "infinite";
+
+console.log("infinite mode:", infinite_mode);
 
 function queryApi() {
     $.ajax("https://spicedify.herokuapp.com/spotify", {
@@ -59,27 +66,56 @@ function displayResults(data) {
     }
 
     if (next) {
-        $("#more").show();
+        if (infinite_mode) {
+            checkScrollPosition();
+        } else {
+            $("#more").show();
+        }
     } else {
         $("#more").hide();
     }
 }
 
+function checkScrollPosition() {
+    var timer = setInterval(function () {
+        if (
+            $(document).scrollTop() + $(window).height() >=
+            $(document).height() - 200
+        ) {
+            console.log("END");
+
+            clearInterval(timer);
+
+            offset += 15;
+
+            queryApi();
+        } else {
+            console.log("NOT END YET");
+        }
+    }, 250);
+}
+
 $("#search").on("click", function () {
-    results.empty();
-    offset = 0;
-    idx = 1;
-
-    queryApi();
-});
-
-$("#query").on("keydown", function (event) {
-    if (event.key === "Enter") {
+    if (currentQuery != $("input[name=query]").val()) {
+        currentQuery = $("input[name=query]").val();
         results.empty();
         offset = 0;
         idx = 1;
 
         queryApi();
+    }
+});
+
+$("#query").on("keydown", function (event) {
+    if (event.key === "Enter") {
+        if (currentQuery != $("input[name=query]").val()) {
+            currentQuery = $("input[name=query]").val();
+            results.empty();
+            offset = 0;
+            idx = 1;
+
+            queryApi();
+        }
     }
 });
 
