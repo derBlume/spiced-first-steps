@@ -1,6 +1,6 @@
 body {
     background-color: rgb(75, 74, 74);
-    color: rgb(56, 109, 56);
+    color: rgb(102, 146, 102);
     display: flex;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -52,7 +52,7 @@ body {
 #results {
     /* width: 450px; */
     display: grid;
-    grid-template-columns: 50px 100px 320px;
+    grid-template-columns: 50px 100px 320px 30px;
     gap: 10px;
     padding: 10px;
 }
@@ -72,6 +72,19 @@ body {
     text-align: center;
 }
 
+#results .popularity {
+    background-color: rgb(128, 123, 123);
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#results .popularity div {
+    background-color: lightseagreen;
+    width: 100%;
+}
 a {
-    color: rgb(56, 109, 56);
+    color: rgb(102, 146, 102);
 }

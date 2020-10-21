@@ -22,10 +22,51 @@
                 <div id="searchInfo"></div>
                 <div id="results"></div>
                 <div id="more"><p>There's more...</p></div>
-                <!-- <button type="button" id="more">There's more...</button> -->
             </div>
 
+            <script
+                id="resultsTemplateAlbums"
+                type="text/x-handlebars-template"
+            >
+                <div class="description">
+                    <p>
+                        {{idx}}.
+                    </p>
+                </div>
+                <img class="image" src="{{image}}" />
+                <div class="description">
+                    <p>
+                        <a href="{{item.external_urls.spotify}}">
+                            {{item.name}}
+                        </a>
+                    </p>
+                </div>
+                <div class="">
+                </div>
+            </script>
+            <script
+                id="resultsTemplateArtists"
+                type="text/x-handlebars-template"
+            >
+                <div class="description">
+                    <p>
+                        {{idx}}.
+                    </p>
+                </div>
+                <img class="image" src="{{image}}" />
+                <div class="description">
+                    <p>
+                        <a href="{{item.external_urls.spotify}}">
+                            {{item.name}}
+                        </a>
+                    </p>
+                </div>
+                <div class="popularity">
+                    <div style="height: {{item.popularity}}%;"></div>
+                </div>
+            </script>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
             <script src="script.js"></script>
         </main>
     </body>

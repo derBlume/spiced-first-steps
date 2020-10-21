@@ -1,4 +1,19 @@
+//HANDLEBARS SETUP
+Handlebars.templates = Handlebars.templates || {};
+
+var templates = document.querySelectorAll(
+    'script[type="text/x-handlebars-template"]'
+);
+
+Array.prototype.slice.call(templates).forEach(function (script) {
+    Handlebars.templates[script.id] = Handlebars.compile(script.innerHTML);
+});
+//HANDLEBARS SETUP
+
 var results = $("#results");
+
+var NO_IMG =
+    "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
 
 var offset = 0;
 var idx = 1;
@@ -19,10 +34,11 @@ function queryApi() {
             offset: offset,
         },
         success: function (data) {
+            console.log(data);
             displayResults(data);
         },
         error: function () {
-            displaySearchInfo(`<p>${message}</p>`);
+            displaySearchInfo(`<p>Something went wrong!</p>`);
         },
     });
 }
@@ -47,22 +63,27 @@ function displayResults(data) {
     displaySearchInfo(`Results for "${$("input[name=query]").val()}":`);
 
     for (var item of items) {
-        var image;
+        var image = item.images.length ? item.images[0].url : NO_IMG;
 
-        results.append(`<div class="description"><p>${idx}.</p></div>`);
-        idx++;
-
-        if (item.images.length) {
-            image = item.images[0].url;
-            results.append(`<img class="image" src="${image}" />`);
+        if ($("select[name=type]").val() === "artist") {
+            results.append(
+                Handlebars.templates.resultsTemplateArtists({
+                    idx: idx,
+                    image: image,
+                    item: item,
+                })
+            );
         } else {
             results.append(
-                `<div class="image">Sorry, no image available</div>`
+                Handlebars.templates.resultsTemplateAlbums({
+                    idx: idx,
+                    image: image,
+                    item: item,
+                })
             );
         }
-        results.append(
-            `<div class="description"><p><a href="${item.external_urls.spotify}">${item.name}</a></p></div>`
-        );
+
+        idx++;
     }
 
     if (next) {
@@ -96,8 +117,12 @@ function checkScrollPosition() {
 }
 
 $("#search").on("click", function () {
-    if (currentQuery != $("input[name=query]").val()) {
-        currentQuery = $("input[name=query]").val();
+    if (
+        currentQuery !=
+        $("input[name=query]").val() + $("select[name=type]").val()
+    ) {
+        currentQuery =
+            $("input[name=query]").val() + $("select[name=type]").val();
         results.empty();
         offset = 0;
         idx = 1;
