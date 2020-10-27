@@ -52,7 +52,7 @@ http.createServer((request, response) => {
         }
         if (stats.isDirectory()) {
             if (request.url.endsWith("/")) {
-                filePath += "/index.html";
+                filePath += "index.html";
             } else {
                 response.setHeader("Location", request.url + "/");
                 response.statusCode = 302;
