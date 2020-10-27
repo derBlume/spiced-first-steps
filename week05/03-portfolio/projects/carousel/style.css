@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background-color: burlywood;
+}
+
+.imageContainer {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateX(100%);
+}
+
+.onscreen {
+    transform: none;
+}
+.offscreen {
+    transform: translateX(-100%);
+}
+
+.onscreen,
+.offscreen {
+    transition: transform 500ms;
+}
+
+.dotContainer {
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    transform: translateY(-100%);
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border: white solid 2px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.dot.filled {
+    background-color: white;
+}
+
+@media screen and (max-height: 600px) {
+    .imageContainer {
+        height: 100vh;
+    }
+}
