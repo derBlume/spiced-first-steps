@@ -2,6 +2,8 @@ const http = require("http");
 const path = require("path");
 const fs = require("fs");
 
+const overview = require("./createOverview.js");
+
 const contentTypes = {
     ".html": "text/html",
     ".css": "text/css",
@@ -25,7 +27,7 @@ http.createServer((request, response) => {
         return response.end();
     }
 
-    //Create the path that leads to the directory/file we want to server.
+    //Create the path that leads to the directory/file we want to serve.
     let filePath = path.normalize(__dirname + "/projects" + request.url);
     console.log("filePath: ", filePath);
 
@@ -35,12 +37,13 @@ http.createServer((request, response) => {
         return response.end();
     }
 
-    /*
-        we use fs.stat to see if the thing being requested is a directory or a file.
-        - if it's a directory, serve it's index.html file 
-        - if it's a file, serve the file and set the appropriate content-type header
-        - if the thing being requested does not exist in projects, send back a 404
-    */
+    if (request.url === "/") {
+        response.setHeader("content-type", "text/html");
+        response.statusCode = 200;
+        response.write(overview.create());
+        return response.end();
+    }
+
     fs.stat(filePath, (err, stats) => {
         if (err) {
             console.log("err in fs.stat: ", err);
