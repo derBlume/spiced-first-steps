@@ -24,7 +24,7 @@
         moveTicker();
     });
 
-    $.ajax("/headlines.json")
+    $.ajax("./headlines.json")
         .done(function (headlines) {
             for (var headline of headlines) {
                 console.log(headline.text);
