@@ -1,5 +1,6 @@
 const overview = require("./createOverview.js");
 
+const basicAuth = require("basic-auth");
 const express = require("express");
 const app = express();
 
@@ -9,6 +10,19 @@ app.use(require("cookie-parser")());
 
 // gives you req.body
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/ticker/", (request, response, next) => {
+    const creds = basicAuth(request);
+    if (!creds || creds.name != "discoduck" || creds.pass != "opensesame") {
+        response.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        response.sendStatus(401);
+    } else {
+        next();
+    }
+});
 
 app.use((request, response, next) => {
     if (
