@@ -37,7 +37,8 @@ footer {
     flex-wrap: wrap;
 }
 
-.projectCard {
+.projectCard,
+.projectDescription {
     margin: 20px;
     border: 2px solid black;
     border-radius: 10px;
@@ -52,4 +53,26 @@ footer {
 
 .projectCard h3 {
     padding: 10px;
+}
+
+.projectDescriptionContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.projectDescriptionContainer .projectCardContainer {
+    /* width: 200px; */
+    align-content: flex-start;
+}
+
+.projectDescriptionContainer .projectCardContainer .projectCard {
+    width: 100%;
+}
+
+.projectDescription {
+    flex-grow: 1;
+}
+
+.highlight {
+    background-color: red;
 }

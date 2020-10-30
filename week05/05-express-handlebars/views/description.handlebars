@@ -1,0 +1,12 @@
+
+<div class="projectDescriptionContainer">
+    <section class="projectCardContainer">
+{{>projectList home=false highlight=project.name}}
+</section>
+<section class="projectDescription">
+  <h2>{{project.name}}</h2>
+  <img src="/{{project.dir}}/screenshot.png" alt="screenshot of {{project.name}}">
+  <p>{{project.description}}</p>
+</section>
+
+</div>

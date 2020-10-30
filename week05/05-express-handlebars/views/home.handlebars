@@ -1,10 +1,5 @@
 
 <h2>Here's my best work ever (so far...):</h2>
 <section class="projectCardContainer">
-{{#projects}}
-<article class="projectCard">
-    <a href="{{dir}}"><img src="{{dir}}/screenshot.png" alt="screenshot of {{name}}"></a>
-    <h3><a href="{{dir}}">{{name}}</a></h3>
-</article>
-{{/projects}}
+{{>projectList home=true}}
 </section>

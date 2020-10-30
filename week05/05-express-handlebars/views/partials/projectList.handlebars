@@ -1,0 +1,11 @@
+
+
+{{#projects}}
+<article class="projectCard">
+    {{#if ../home}}
+    <a href="/description/{{dir}}"><img src="/{{dir}}/screenshot.png" alt="screenshot of {{name}}"></a>
+    {{/if}}
+    <a href="/description/{{dir}}"><h3>{{name}}</h3></a>
+    
+</article>
+{{/projects}}
