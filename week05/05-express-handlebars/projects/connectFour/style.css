@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+}
+body {
+    background-color: burlywood;
+    margin: 0;
+}
+
+.start {
+    height: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.token {
+    position: relative;
+    top: 0;
+
+    height: 40px;
+    width: 40px;
+
+    border-radius: 50%;
+}
+
+.new-position {
+    transition: left 1s, top 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.slot {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    overflow: hidden;
+    /* clip-path */
+}
+
+.hole {
+    /* background-color: ghostwhite; */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 20px solid steelblue;
+    transform: translate(-15px, -15px);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(6, 50px);
+}
+
+/* .player-1 {
+}
+
+.player-2 {
+} */
+
+.player-1v {
+    background-color: rgb(206, 54, 54);
+}
+
+.player-2v {
+    background-color: rgba(248, 246, 99, 0.979);
+}

@@ -1,0 +1,9 @@
+[
+    { "name": "Kitty Carousel", "dir": "carousel" },
+    { "name": "News Ticker", "dir": "ticker" },
+    { "name": "Connect Four", "dir": "connectFour" },
+    { "name": "Country Search", "dir": "countrySearch" },
+    { "name": "Spotify Search", "dir": "spotifySearch" },
+    { "name": "Animated Figure", "dir": "stickFigure" },
+    { "name": "A simple Website", "dir": "website" }
+]
