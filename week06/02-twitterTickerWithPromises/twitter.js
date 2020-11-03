@@ -25,7 +25,7 @@ function getToken(callback) {
         //console.log(response.statusCode);
 
         if (response.statusCode !== 200) {
-            callback(response.statusCode);
+            callback(new Error(response.statusCode));
         } else {
             let body = "";
 
@@ -63,7 +63,7 @@ function getTweets(bearerToken, twitterUser, callback) {
         //console.log(response.statusCode);
 
         if (response.statusCode !== 200) {
-            callback(response.statusCode);
+            callback(new Error(response.statusCode));
         } else {
             let body = "";
 
