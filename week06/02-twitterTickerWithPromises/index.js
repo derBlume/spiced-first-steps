@@ -15,6 +15,10 @@ app.get("/headlines.json", (request, response) => {
         .then((rawTweets) => {
             const filteredTweets = filterTweets(rawTweets);
             response.json(filteredTweets);
+        })
+        .catch((error) => {
+            response.sendStatus(500);
+            console.log("SOMETHING WENT WRONG: ", error);
         });
 });
 
