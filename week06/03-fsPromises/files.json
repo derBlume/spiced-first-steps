@@ -1,0 +1,26 @@
+{
+    "README.md": 12,
+    "part1": {
+        "a": {
+            "images": {
+                "cats.png": 573350,
+                "kitty1_150x150.jpg": 9279,
+                "kitty2_150x150.jpg": 14355,
+                "kitty3_150x150.jpg": 13387
+            },
+            "index.html": 241,
+            "stylesheet.css": 40
+        },
+        "b": {
+            "images": {
+                "boxes.png": 156804
+            },
+            "index.html": 243,
+            "stylesheet.css": 39
+        }
+    },
+    "part2": {
+        "index.html": 160,
+        "script.js": 1998
+    }
+}
