@@ -1,6 +1,4 @@
-const https = require("https"); // core module
-const { promisify } = require("util");
-
+const { request } = require("./request");
 const credentials = require("./credentials.json");
 
 // encoded in base64
@@ -8,9 +6,7 @@ const encodedCredentials = Buffer.from(
     `${credentials.key}:${credentials.secret}`
 ).toString("base64");
 
-module.exports.getToken = promisify(getToken);
-
-function getToken(callback) {
+module.exports.getToken = function getToken() {
     const options = {
         host: "api.twitter.com",
         path: "/oauth2/token",
@@ -21,35 +17,12 @@ function getToken(callback) {
         },
     };
 
-    function handleResponse(response) {
-        //console.log(response.statusCode);
+    return request(options, "grant_type=client_credentials").then(
+        (data) => data.access_token
+    );
+};
 
-        if (response.statusCode !== 200) {
-            callback(new Error(response.statusCode));
-        } else {
-            let body = "";
-
-            response.on("data", (chunk) => {
-                body += chunk;
-            });
-
-            response.on("end", () => {
-                const accessToken = JSON.parse(body);
-                //console.log(accessToken);
-
-                callback(null, accessToken.access_token);
-            });
-        }
-    }
-
-    const requestToTwitter = https.request(options, handleResponse);
-    requestToTwitter.end("grant_type=client_credentials");
-}
-
-module.exports.getTweets = promisify(getTweets);
-function getTweets(bearerToken, twitterUser, callback) {
-    console.log(bearerToken);
-
+module.exports.getTweets = function getTweets(bearerToken, twitterUser) {
     const options = {
         host: "api.twitter.com",
         path: `/1.1/statuses/user_timeline.json?screen_name=${twitterUser}&tweet_mode=extended`,
@@ -58,31 +31,8 @@ function getTweets(bearerToken, twitterUser, callback) {
             Authorization: `Bearer ${bearerToken}`,
         },
     };
-
-    function handleResponse(response) {
-        //console.log(response.statusCode);
-
-        if (response.statusCode !== 200) {
-            callback(new Error(response.statusCode));
-        } else {
-            let body = "";
-
-            response.on("data", (chunk) => {
-                body += chunk;
-            });
-
-            response.on("end", () => {
-                const rawTweets = JSON.parse(body);
-                //console.log(rawTweets[1].entities);
-
-                callback(null, rawTweets);
-            });
-        }
-    }
-
-    const requestToTwitter = https.request(options, handleResponse);
-    requestToTwitter.end("grant_type=client_credentials");
-}
+    return request(options);
+};
 
 module.exports.filterTweets = function (rawTweets) {
     let filteredTweets = [];

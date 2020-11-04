@@ -1,37 +1,39 @@
-const { getToken, getTweets, filterTweets } = require("./twitter");
-const express = require("express"); // 3rd party module
+const express = require("express");
 
-//const TWITTER_USER = "derspiegel";
+const { getToken, getTweets, filterTweets } = require("./twitter");
 
 const app = express();
 
+app.listen(8080);
+
 app.use(express.static("ticker"));
+
+const TWITTER_ACCOUNTS = ["derspiegel", "nytimes", "zeitonline"];
 
 app.get("/headlines.json", (request, response) => {
     getToken()
         .then((bearerToken) => {
-            return Promise.all([
-                getTweets(bearerToken, "derspiegel"),
-                getTweets(bearerToken, "nytimes"),
-                getTweets(bearerToken, "zeitonline"),
-            ]);
+            return Promise.all(
+                TWITTER_ACCOUNTS.map((twitterAccount) =>
+                    getTweets(bearerToken, twitterAccount)
+                )
+            );
         })
-        .then((rawTweets) => {
-            rawTweets = rawTweets.flat().sort((a, b) => {
+        .then((tweets) => {
+            tweets = tweets.flat().sort((a, b) => {
                 return new Date(b.created_at) - new Date(a.created_at);
             });
-            for (let tweet of rawTweets) {
+            for (let tweet of tweets) {
                 tweet.full_text =
-                    tweet.user.name.toUpperCase() + ": " + tweet.full_text;
+                    "@" +
+                    tweet.user.screen_name.toUpperCase() +
+                    ": " +
+                    tweet.full_text;
             }
-            const filteredTweets = filterTweets(rawTweets);
-
-            response.json(filteredTweets);
+            response.json(filterTweets(tweets));
         })
         .catch((error) => {
             response.sendStatus(500);
             console.log("SOMETHING WENT WRONG: ", error);
         });
 });
-
-app.listen(8080);
