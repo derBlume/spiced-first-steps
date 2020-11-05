@@ -18,6 +18,8 @@ INSERT INTO actors (full_name, age, oscars) VALUES ('John Cho', 43, 0);
 
 SELECT * FROM actors;
 
+-- actors with more than one oscar
 SELECT * FROM actors WHERE oscars > 1;
 
+-- actors who are older than 30
 SELECT * FROM actors WHERE age > 30;
