@@ -1,3 +1,15 @@
-just a test.
+Input:
+
+
 git commit --amend --author "Patrick Blume <71653434+derBlume@users.noreply.github.com>" --no-edit && \
 git rebase --continue
+
+
+Output:
+
+[master 813f9dc] a test
+ Date: Wed Dec 9 18:46:56 2020 +0100
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test.txt
+fatal: No rebase in progress?
+
