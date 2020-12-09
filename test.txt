@@ -1,1 +1,3 @@
 just a test.
+git commit --amend --author "Patrick Blume <71653434+derBlume@users.noreply.github.com>" --no-edit && \
+git rebase --continue
